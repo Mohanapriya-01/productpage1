@@ -1,0 +1,607 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+
+
+    <title>All Product Page</title>
+    <style>
+       * {
+    overflow-x: hidden;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f4f4f4;
+    display: flex;
+    flex-direction: column;
+}
+.navbar
+{
+  width: 100%; /* Ensure the navbar takes full width */
+}
+/* Sidebar Styles */
+.sidebar {
+    width: 250px;
+    padding: 10px;
+    height: 100vh;    
+
+    overflow-y: auto;
+}
+
+.sidebar h2 {
+    margin-top: 0;
+    font-size: 24px;
+    color: black;
+}
+
+.sidebar .category {
+    margin: 25px 0;
+    padding: 10px 20px;
+    cursor: pointer;
+    box-shadow: 5px 5px 5px lightgray;
+    color: black;
+    font-size: 16px;
+    border-radius: 5px;
+    text-align: center;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: white;
+}
+
+.sidebar .category.active {
+    background-color: lightcyan;
+}
+
+.snacks-text {
+    margin-right: 10px;
+    font-size: 16px;
+}
+
+.snacks-image {
+    height: 20px;
+}
+
+/* Content Styles */
+.content {
+
+     margin-top: -500px;
+     margin-left: 270px;
+    padding: 20px;
+    flex-grow: 1;
+}
+
+h1 {
+    text-align: center;
+    color: black;
+    text-transform: capitalize;
+}
+
+/* Horizontal Tab Styles */
+.tabs-container {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 20px;
+    flex-wrap: wrap;
+}
+
+.tab {
+    margin: 5px 10px;
+    padding: 10px 20px;
+    cursor: pointer;
+    background-color: green;
+    color: white;
+    border-radius: 5px;
+    text-align: center;
+}
+
+.tab.active {
+    background-color: #0056b3;
+}
+
+/* Product Grid Styles */
+.products-container {
+    display: flex;
+    justify-content: flex-start;
+    flex-wrap: wrap;
+    gap: 20px;
+}
+
+.product {
+    width: 220px;
+    padding: 10px;
+    background-color: white;
+    border-radius: 8px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+    transition: transform 0.3s;
+}
+
+.product:hover {
+    transform: translateY(-5px);
+}
+
+.product img {
+    max-width: 100%;
+    border-radius: 8px;
+}
+
+.product h3 {
+    margin-top: 10px;
+    font-size: 16px;
+    font-weight: 600;
+    color: #333;
+}
+
+/* Wishlist Icon Styles */
+.wishlist-icon {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    font-size: 20px;
+    cursor: pointer;
+    color: #aaa;
+    transition: color 0.3s;
+}
+
+.wishlist-icon.active {
+    color: red;
+}
+
+/* Buy Now Button */
+.buy-now-btn {
+    
+    padding: 8px 20px;
+    background-color: #28a745;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.buy-now-btn:hover {
+    background-color: #218838;
+}
+
+/* Responsive Design */
+@media (max-width: 1200px) {
+    .content {
+        margin-left: 250px;
+    }
+
+    .product {
+        width: 200px;
+    }
+}
+
+@media (max-width: 992px) {
+    .content {
+        margin-left: 220px;
+    }
+
+    .product {
+        width: 180px;
+    }
+}
+
+@media (max-width: 768px) {
+    .sidebar {
+        width: 200px;
+    }
+
+    .content {
+        margin-left: 220px;
+    }
+
+    .product {
+        width: 160px;
+    }
+
+    .tabs-container {
+        flex-direction: column;
+        align-items: center;
+    }
+    .navbar .navbar-collapse {
+    z-index: 1050; /* Bootstrap's default z-index for navbar */
+}
+
+.navbar .dropdown-menu {
+    z-index: 1050; /* Ensure dropdown is on top */
+    position: absolute; /* Ensure dropdown menu is positioned correctly */
+    top: 100%; /* Position dropdown below the dropdown toggle button */
+    left: 0; /* Align with the left edge of the dropdown toggle button */
+}
+}
+
+@media (max-width: 576px) {
+    .sidebar {
+        width: 150px;
+        padding: 15px;
+    }
+
+    .content {
+        margin-left: 170px;
+    }
+
+    .products-container {
+        justify-content: center;
+    }
+
+    .tabs-container {
+        flex-direction: column;
+    }
+
+    .tab {
+        margin: 5px 0;
+        width: 100%;
+    }
+
+    .product {
+        width: 100%;
+        max-width: 300px;
+    }
+
+    .sidebar .category {
+        font-size: 14px;
+        padding: 10px;
+    }
+
+    .snacks-text {
+        font-size: 14px;
+    }
+    .navbar .navbar-collapse {
+    z-index: 1050; /* Bootstrap's default z-index for navbar */
+}
+
+.navbar .dropdown-menu {
+    z-index: 1050; /* Ensure dropdown is on top */
+    position: absolute; /* Ensure dropdown menu is positioned correctly */
+    top: 100%; /* Position dropdown below the dropdown toggle button */
+    left: 0; /* Align with the left edge of the dropdown toggle button */
+}
+}
+
+    </style>
+</head>
+
+<body>
+
+
+    <nav class="navbar navbar-expand-lg">
+    <div class="container-fluid">
+        <a class="navbar-brand" href="#">
+          <img src="iyappaa.png" width="120" height="60">
+        </a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                <li class="nav-item">
+                  <a class="nav-link active me-4" aria-current="page" href="#" id="list-items">Overview</a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link me-4" href="product.html"  id="list-items">All Products</a>
+                </li>
+                <li class="nav-item dropdown">
+                  <a class="nav-link dropdown-toggle me-4" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false"  id="list-items">
+                    Categories
+                  </a>
+                  <ul class="dropdown-menu"  id="list-items">
+                    <li><a class="dropdown-item" href="#">Sweets</a></li>
+                    <li><a class="dropdown-item" href="#">Snacks</a></li>
+                    <li><a class="dropdown-item" href="#">Groceries</a></li>
+                    <li><a class="dropdown-item" href="#">Oil</a></li>
+                    <li><a class="dropdown-item" href="#">Rice</a></li>
+                    <li><a class="dropdown-item" href="#">Candies</a></li>
+                    <li><a class="dropdown-item" href="#">Organic Products</a></li>
+                    <li><a class="dropdown-item" href="#">Home Appliances</a></li>                  
+                  </ul>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" href="Aboutus.html"  id="list-items">About us</a>
+                </li>
+            </ul>
+            <form class="d-flex search" role="search">
+              <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
+              
+            </form>
+            <button class="btn btn-outline-success" type="submit">Search</button>
+              <button class="btn btn-outline-danger" type="submit" style="margin-left: 10px;">Login/Signup</button>
+        </div>
+    </div>
+</nav><!--navbar-->
+
+<div>
+    <img src="Website Banner1.jpg" width="100%">
+</div>
+
+
+    <div class="sidebar">
+        <h2>Categories</h2>
+<div class="category" onclick="filterMainCategory('chips')">
+    <span class="snacks-text">Snacks</span>
+    <img src="sweet-logo.png" class="snacks-image">
+</div>
+<div class="category" onclick="filterMainCategory('cookies')">
+    <span class="snacks-text">Sweets</span>
+    <img src="snacks-icon.png" class="snacks-image">
+</div>
+        <div class="category" onclick="filterMainCategory('nuts')">
+            <span class="snacks-text">Candies</span>
+            <img src="candy-icon.png" class="snacks-image">
+</div>
+        <div class="category" onclick="filterMainCategory('candies')">
+       <span class="snacks-text">Groceries</span>
+   <img src="grocery-icon.png" class="snacks-image">
+</div>
+        <div class="category" onclick="filterMainCategory('rice')">
+            <span class="snacks-text">Rice</span>
+   <img src="rice-icon.png" class="snacks-image">
+</div>
+        <div class="category" onclick="filterMainCategory('oil')">
+            <span class="snacks-text">Oil</span>
+   <img src="olive-oil-icon.png" class="snacks-image">
+</div>
+        <div class="category" onclick="filterMainCategory('herbal')">
+            <span class="snacks-text">Herbal</span>
+   <img src="herbal-icons.png" class="snacks-image">
+</div>
+        <div class="category" onclick="filterMainCategory('homeappliances')">
+       <span class="snacks-text">Home Appliance</span>
+   <img src="homeappliance-icon.png" class="snacks-image">
+</div>
+    </div>
+
+    <div class="content">
+        <h1 id="category-title">Chips</h1>
+        <div class="tabs-container" id="tabs-container">
+            <!-- Horizontal tabs will be dynamically inserted here -->
+        </div>
+        <div class="products-container" id="products-container">
+            <!-- Products will be displayed here -->
+        </div>
+    </div>
+
+    <script>
+         const productsData = {
+            chips: {
+                subcategories: ['Iyappaa', 'Amrith', 'Venba'],
+                products: {
+                    'Iyappaa': [
+                        { name: "Classic Potato Chips", image: "1.jpg", description: "Crispy and salty classic potato chips." },
+                        { name: "Spicy Potato Chips", image: "2.jpg", description: "Potato chips with a spicy kick." }
+                    ],
+                    'Amrith': [
+                        { name: "Classic Tortilla Chips", image: "3.jpg", description: "Crunchy tortilla chips, great with salsa." },
+                        { name: "Cheesy Tortilla Chips", image: "4.jpg", description: "Tortilla chips with cheesy flavor." }
+                    ],
+                    'Venba': [
+                        { name: "Loaded Nachos", image: "5.jpg", description: "Nachos topped with cheese and jalapeños." },
+                        { name: "BBQ Nachos", image: "6.jpg", description: "Nachos with BBQ sauce and meat toppings." }
+                    ]
+                }
+            },
+            cookies: {
+                subcategories: ['Iyappaa', 'Amrith', 'Venba'],
+                products: {
+                    'Iyappaa': [
+                        { name: "Classic Chocolate Chip", image: "1.jpg", description: "Cookies loaded with chocolate chips." },
+                        { name: "Double Chocolate Chip", image: "2.jpg", description: "Extra chocolate in every bite." }
+                    ],
+                    'Amrith': [
+                        { name: "Oatmeal Raisin", image: "3.jpg", description: "Healthy oatmeal cookies with raisins." },
+                        { name: "Oatmeal Chocolate", image: "4.jpg", description: "Oatmeal cookies with a chocolate twist." }
+                    ],
+                    'Venba': [
+                        { name: "Simple Sugar Cookies", image: "1.jpg", description: "Sweet and simple sugar cookies." },
+                        { name: "Decorated Sugar Cookies", image: "2.jpg", description: "Sugar cookies perfect for decorating." }
+                    ]
+                }
+            },
+            nuts: {
+                subcategories: ['Iyappaa', 'Amrith', 'Venba'],
+                products: {
+                    'Iyappaa': [
+                        { name: "Roasted Almonds", image: "3.jpg", description: "Crunchy roasted almonds." },
+                        { name: "Honey Almonds", image: "4.jpg", description: "Almonds coated with honey." }
+                    ],
+                    'Amrith': [
+                        { name: "Salted Cashews", image: "5.jpg", description: "Creamy cashews with a pinch of salt." },
+                        { name: "Spiced Cashews", image: "6.jpg", description: "Cashews with a blend of spices." }
+                    ],
+                    'Venba': [
+                        { name: "Classic Pistachios", image: "1.jpg", description: "Flavorful pistachios, perfect for snacking." },
+                        { name: "Salt and Pepper Pistachios", image: "2.jpg", description: "Pistachios seasoned with salt and pepper." }
+                    ]
+                }
+            },
+            candies: {
+                subcategories: ['Iyappaa', 'Amrith', 'Venba'],
+                products: {
+                    'Iyappaa': [
+                        { name: "Classic Gummy Bears", image: "3.jpg", description: "Soft and chewy gummy bears." },
+                        { name: "Sour Gummy Bears", image: "4.jpg", description: "Gummy bears with a sour twist." }
+                    ],
+                    'Amrith': [
+                        { name: "Milk Chocolate Bars", image: "1.jpg", description: "Rich and creamy milk chocolate." },
+                        { name: "Dark Chocolate Bars", image: "2.jpg", description: "Intense dark chocolate bars." }
+                    ],
+                    'Venba': [
+                        { name: "Fruit Lollipops", image: "3.jpg", description: "Colorful lollipops in fruity flavors." },
+                        { name: "Candy Swirl Lollipops", image: "4.jpg", description: "Lollipops with a candy swirl design." }
+                    ]
+                }
+            },
+            rice: {
+                subcategories: ['Iyappaa', 'Amrith', 'Venba'],
+                products: {
+                    'Iyappaa': [
+                        { name: "Classic Gummy Bears", image: "3.jpg", description: "Soft and chewy gummy bears." },
+                        { name: "Sour Gummy Bears", image: "4.jpg", description: "Gummy bears with a sour twist." }
+                    ],
+                    'Amrith': [
+                        { name: "Milk Chocolate Bars", image: "1.jpg", description: "Rich and creamy milk chocolate." },
+                        { name: "Dark Chocolate Bars", image: "2.jpg", description: "Intense dark chocolate bars." }
+                    ],
+                    'Venba': [
+                        { name: "Fruit Lollipops", image: "3.jpg", description: "Colorful lollipops in fruity flavors." },
+                        { name: "Candy Swirl Lollipops", image: "4.jpg", description: "Lollipops with a candy swirl design." }
+                    ]
+                }
+            },
+            oil: {
+                subcategories: ['Iyappaa', 'Amrith', 'Venba'],
+                products: {
+                    'Iyappaa': [
+                        { name: "Classic Gummy Bears", image: "3.jpg", description: "Soft and chewy gummy bears." },
+                        { name: "Sour Gummy Bears", image: "4.jpg", description: "Gummy bears with a sour twist." }
+                    ],
+                    'Amrith': [
+                        { name: "Milk Chocolate Bars", image: "1.jpg", description: "Rich and creamy milk chocolate." },
+                        { name: "Dark Chocolate Bars", image: "2.jpg", description: "Intense dark chocolate bars." }
+                    ],
+                    'Venba': [
+                        { name: "Fruit Lollipops", image: "3.jpg", description: "Colorful lollipops in fruity flavors." },
+                        { name: "Candy Swirl Lollipops", image: "4.jpg", description: "Lollipops with a candy swirl design." }
+                    ]
+                }
+            },
+            herbal: {
+                subcategories: ['Iyappaa', 'Amrith', 'Venba'],
+                products: {
+                    'Iyappaa': [
+                        { name: "Classic Gummy Bears", image: "3.jpg", description: "Soft and chewy gummy bears." },
+                        { name: "Sour Gummy Bears", image: "4.jpg", description: "Gummy bears with a sour twist." }
+                    ],
+                    'Amrith': [
+                        { name: "Milk Chocolate Bars", image: "1.jpg", description: "Rich and creamy milk chocolate." },
+                        { name: "Dark Chocolate Bars", image: "2.jpg", description: "Intense dark chocolate bars." }
+                    ],
+                    'Venba': [
+                        { name: "Fruit Lollipops", image: "3.jpg", description: "Colorful lollipops in fruity flavors." },
+                        { name: "Candy Swirl Lollipops", image: "4.jpg", description: "Lollipops with a candy swirl design." }
+                    ]
+                }
+            },
+            homeappliances: {
+                subcategories: ['Iyappaa', 'Amrith', 'Venba'],
+                products: {
+                    'Iyappaa': [
+                        { name: "Classic Gummy Bears", image: "3.jpg", description: "Soft and chewy gummy bears." },
+                        { name: "Sour Gummy Bears", image: "4.jpg", description: "Gummy bears with a sour twist." }
+                    ],
+                     'Amrith': [
+                        { name: "Milk Chocolate Bars", image: "1.jpg", description: "Rich and creamy milk chocolate." },
+                        { name: "Dark Chocolate Bars", image: "2.jpg", description: "Intense dark chocolate bars." }
+                    ],
+                    'Venba': [
+                        { name: "Fruit Lollipops", image: "3.jpg", description: "Colorful lollipops in fruity flavors." },
+                        { name: "Candy Swirl Lollipops", image: "4.jpg", description: "Lollipops with a candy swirl design." }
+                    ]
+                }
+            }
+        };
+
+        let currentCategory = 'chips';
+        let currentSubcategory = productsData[currentCategory].subcategories[0];
+
+        function filterMainCategory(category) {
+            currentCategory = category;
+            currentSubcategory = productsData[category].subcategories[0];
+            updateCategoryTitle();
+            updateTabs();
+            filterSubCategory(currentSubcategory);
+        }
+
+        function updateCategoryTitle() {
+            const categoryTitle = document.getElementById('category-title');
+            categoryTitle.textContent = currentCategory;
+        }
+
+        function filterSubCategory(subcategory) {
+            currentSubcategory = subcategory;
+
+            const productsContainer = document.getElementById('products-container');
+            productsContainer.innerHTML = '';
+
+            const categories = document.querySelectorAll('.sidebar .category');
+            categories.forEach(cat => cat.classList.remove('active'));
+            document.querySelector(`.sidebar .category[onclick="filterMainCategory('${currentCategory}')"]`).classList.add('active');
+
+            const tabs = document.querySelectorAll('.tabs-container .tab');
+            tabs.forEach(tab => tab.classList.remove('active'));
+            document.querySelector(`.tab[onclick="filterSubCategory('${subcategory}')"]`).classList.add('active');
+
+            productsData[currentCategory].products[subcategory].forEach(product => {
+                const productElement = document.createElement('div');
+                productElement.classList.add('product');
+
+                const productImage = document.createElement('img');
+                productImage.src = product.image;
+                productImage.alt = product.name;
+
+                const productName = document.createElement('h3');
+                productName.textContent = product.name;
+
+                const wishlistIcon = document.createElement('i');
+                wishlistIcon.classList.add('wishlist-icon');
+                wishlistIcon.innerHTML = '♥';
+                wishlistIcon.addEventListener('click', () => {
+                    wishlistIcon.classList.toggle('active');
+                });
+
+                const buyNowBtn = document.createElement('button');
+                buyNowBtn.classList.add('buy-now-btn');
+                buyNowBtn.textContent = 'Buy Now';
+
+                productElement.appendChild(wishlistIcon);
+                productElement.appendChild(productImage);
+                productElement.appendChild(productName);
+                productElement.appendChild(buyNowBtn);
+
+                productsContainer.appendChild(productElement);
+            });
+        }
+
+        function updateTabs() {
+            const tabsContainer = document.getElementById('tabs-container');
+            tabsContainer.innerHTML = '';
+
+            productsData[currentCategory].subcategories.forEach(subcategory => {
+                const tabElement = document.createElement('div');
+                tabElement.classList.add('tab');
+                tabElement.textContent = subcategory;
+                tabElement.setAttribute('onclick', `filterSubCategory('${subcategory}')`);
+
+                if (subcategory === currentSubcategory) {
+                    tabElement.classList.add('active');
+                }
+
+                tabsContainer.appendChild(tabElement);
+            });
+        }
+
+        filterMainCategory(currentCategory);
+    </script>
+
+
+    <!-- Bootstrap JS -->
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.min.js"></script>
+
+
+</body>
+
+</html>
